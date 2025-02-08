@@ -1,1 +1,1 @@
-![alt text](https://github.com/zervidas/c/blob/js.jpg?raw=true)
+![alt text](https://github.com/zervidas/c/blob/tree/main/js.jpg?raw=true)
