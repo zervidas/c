@@ -24,7 +24,24 @@ async function extractData(data) {
         result.push(obj);
       }
     }
-    return result
+    
+    const potong = data.split('Search Results')[1].split('Show more')[0];
+    const daftar = splited.split('\n\n').filter(_=>_.startsWith('[###'));
+    const anu = [];
+
+    for (let i = 0; i < daftar.length; i += 2) {
+      const maui = daftar[i]?.match(/\[###(.*?)!\[(.*?)\]\((.*?)\)(.*?)\](.*?)\)/);
+     
+      if (maui) {
+        const obj = {
+          title: maui[1].trim(),
+          desc: maui[4],
+          link: maui[5]
+        };
+        anu.push(obj);
+      }
+    }
+    return {result: anu, images: result };
     } catch (e){console.log(e.message)
         return [];
     }
