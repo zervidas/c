@@ -24,7 +24,7 @@ async function mediaFire(url) {
       
       if (desc.toLowerCase().includes('download') && desc.match(/\((\d+(\.\d+)?[KMGT]B)\)/)) {
         result.url = link;
-        result.size = (desc.match(/\((\d+(\.\d+)?[MG]B)\)/) || [])[1] || '';
+        result.size = (desc.match(/\((\d+(\.\d+)?[KMG]?B)\)/) || [])[1] || '';
       }
       if (desc.toLowerCase().includes('repair')) {
         result.repair = link;
