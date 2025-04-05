@@ -120,7 +120,7 @@ const sketch = (p) => {
   };
 };
 
-new p5(sketch);
+new p5(sketch).start();
 ```
 
 ## Advanced Examples
@@ -136,7 +136,6 @@ const path = require('path');
 
 const sketch = (p) => {
   let angle = 0;
-  let frameCount = 0;
   const outputDir = 'frames';
   
   p.setup = () => {
@@ -159,11 +158,11 @@ const sketch = (p) => {
     
     // Save every frame
     p.saveFrame(path.join(outputDir, `frame_${p.nf(frameCount, 4)}.png`));
+    console.log('Saved frame:', p.frameCount);
     
     angle += 0.1;
-    frameCount++;
     
-    if (frameCount > 60) { // Stop after 60 frames (~2 seconds)
+    if (p.frameCount > 60) { // Stop after 60 frames (~2 seconds)
       p.noLoop();
       console.log('Animation complete!');
       process.exit();
@@ -171,7 +170,7 @@ const sketch = (p) => {
   };
 };
 
-new p5(sketch);
+new p5(sketch).start();
 ```
 
 ### Multiple Sketches
@@ -208,8 +207,8 @@ const sketch2 = (p) => {
 };
 
 // Run both sketches
-new p5(sketch1);
-new p5(sketch2);
+new p5(sketch1).start();
+new p5(sketch2).start();
 ```
 
 ## API Notes
