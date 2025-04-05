@@ -118,7 +118,7 @@ const sketch = (p) => {
     p.fill(200, 0, 0);
     p.rect(20, 200, 200, 100);
     p.image(img, 0, 0, 300, 300);
-    p.saveCanvas('instance_output', 'jpeg');
+    p.saveFrame('instance_output.jpeg', 'image/jpeg');
     p.noLoop();
     process.exit(0);
   };
