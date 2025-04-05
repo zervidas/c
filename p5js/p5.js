@@ -1,6 +1,8 @@
 /*! p5.min.js v0.2.22 July 21, 2014 */
 const skia = require('@napi-rs/canvas-android-arm64');///GoogleSkia.android-arm64.node');
 const fs = require('fs');
+const { execSync } = require('child_process');
+
 const { Image } = skia;
 
 if (fs.existsSync('./Microsoft Sans Serif.ttf')) skia.GlobalFonts.registerFromPath('./Microsoft Sans Serif.ttf', 'sans-serif');
@@ -2546,6 +2548,33 @@ var outputfiles = (function (require, core) {
     p5.prototype.saveFrame = function (path, mime, quality) {
         if (!path) throw "The path in the first parameter of saveFrame(path, mime, quality) cannot be empty";
         fs.writeFileSync(path, this.getFrame(mime, quality));
+    };
+    p5.prototype.saveVideo = function (path, frames, format) {
+        if (!path) throw "The path in the first parameter of saveVideo cannot be empty";
+        if (!frames || !Array.isArray(frames)) throw "Frames in the second parameter of saveVideo must be an array containing image buffers.";
+        if (!format) throw "Format of frames in the third parameter of saveVideo cannot be empty.";
+        
+        // Create unique temp folder
+        const tempFolder = 'p5_frames_' + Date.now();
+        if (!fs.existsSync(tempFolder)) {
+            fs.mkdirSync(tempFolder);
+        }
+        
+        try {
+            // Save all frames to temp folder
+            frames.forEach((frame, i) => {
+                const framePath = `${tempFolder}/frame_${i.toString().padStart(4, '0')}.${format}`;
+                fs.writeFileSync(framePath, frame);
+            });
+            
+            // Export to video using ffmpeg
+            execSync(`ffmpeg -framerate ${this._targetFrameRate} -i ${tempFolder}/frame_%04d.${format} -c:v libx264 -pix_fmt yuv420p ${path} -y`, { stdio: 'ignore' });
+        } catch (error) {
+            throw error; // Re-throw error setelah cleanup
+        } finally {
+            // Clean up temp folder (baik sukses maupun error)
+            fs.rmSync(tempFolder, { recursive: true, force: true });
+        }
     };
     p5.prototype.saveJSONArray = function () {
         throw "not yet implemented";
