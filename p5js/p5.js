@@ -1,5 +1,5 @@
 /*! p5.min.js v0.2.22 July 21, 2014 */
-const skia = require('./GoogleSkia.android-arm64.node');
+const skia = require('@napi-rs/canvas-android-arm64');///GoogleSkia.android-arm64.node');
 const fs = require('fs');
 const { Image } = skia;
 
