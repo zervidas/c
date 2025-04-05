@@ -398,6 +398,7 @@ var p5Graphics = (function (require, core, constants) {
         if (this._pInst) {
             this._pInst._setProperty("_curElement", this);
             this._pInst._setProperty("canvas", elt);
+            this._pInst._setProperty("ctx", elt.getContext('2d'));
             this._pInst._setProperty("width", this.width);
             this._pInst._setProperty("height", this.height);
         } else {
@@ -766,6 +767,7 @@ var p5Image = (function (require, core, filters) {
         this.canvas = document.createElement("canvas");
         this.canvas.width = this.width;
         this.canvas.height = this.height;
+        this.ctx = this.canvas.getContext('2d');
         this.pixels = [];
     };
     p5.Image.prototype._setProperty = function (prop, value) {
@@ -2729,7 +2731,7 @@ var shape2d_primitives = (function (require, core, canvas, constants) {
     p5.prototype.ellipse = function (x, y, width, height) {
         var ctx = this.canvas.getContext("2d");
         ctx.beginPath();
-        ctx.ellipse(x, y, width/2, height/2, 0, 0, Math.PI * 2);
+        ctx.ellipse(x, y, width/2, (height??width)/2, 0, 0, Math.PI * 2);
         ctx.fill();
         ctx.stroke();
         return this;
