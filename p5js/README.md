@@ -230,4 +230,5 @@ new p5(sketch2);
    - No interactive events (mouse, keyboard) unless you implement them
 
 For more details, refer to the [p5.js documentation](https://github.com/processing/p5.js/wiki/p5.js-overview#node).
+
 For more reference, refer to the [p5.js reference](https://p5js.org/reference/).
