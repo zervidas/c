@@ -229,4 +229,5 @@ new p5(sketch2);
    - Some p5.js features that require DOM won't work
    - No interactive events (mouse, keyboard) unless you implement them
 
-For more details, refer to the [p5.js Node.js documentation](https://github.com/processing/p5.js/wiki/p5.js-overview#node).
+For more details, refer to the [p5.js documentation](https://github.com/processing/p5.js/wiki/p5.js-overview#node).
+For more reference, refer to the [p5.js reference](https://p5js.org/reference/).
