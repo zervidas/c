@@ -71,15 +71,15 @@ function preload() {
 function setup() {
   createCanvas(800, 600);
   noLoop();
-  image(elaina, 100, 100, 300, 300);
-  saveCanvas('output', 'jpeg');
-  process.exit(0);
 }
 
 function draw() {
   background(0);
   fill(200, 0, 0);
   rect(20, 200, 200, 100);
+  image(elaina, 100, 100, 300, 300);
+  saveCanvas('output.jpeg', 'image/jpeg');
+  process.exit(0);
 }
 
 global.preload = preload;
@@ -106,16 +106,16 @@ const sketch = (p) => {
   p.setup = () => {
     p.createCanvas(800, 600);
     p.noLoop();
-    p.image(img, 0, 0, 300, 300);
-    p.saveCanvas('instance_output', 'jpeg');
-    p.noLoop();
-    process.exit(0);
   };
 
   p.draw = () => {
     p.background(0);
     p.fill(200, 0, 0);
     p.rect(20, 200, 200, 100);
+    p.image(img, 0, 0, 300, 300);
+    p.saveCanvas('instance_output', 'jpeg');
+    p.noLoop();
+    process.exit(0);
   };
 };
 
