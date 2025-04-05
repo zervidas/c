@@ -20,6 +20,9 @@ First, install skia for Node.js:
 ```bash
 npm install @napi-rs/canvas-android-arm64
 ```
+```bash
+wget https://raw.githubusercontent.com/zervidas/c/refs/heads/main/p5js/p5.js
+```
 
 Import a local p5.js file:
 
