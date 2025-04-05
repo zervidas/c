@@ -157,7 +157,7 @@ const sketch = (p) => {
     p.rect(0, 0, 100, 50);
     
     // Save every frame
-    p.saveFrame(path.join(outputDir, `frame_${p.nf(frameCount, 4)}.png`));
+    p.saveFrame(path.join(outputDir, `frame_${p.nf(p.frameCount, 4)}.png`));
     console.log('Saved frame:', p.frameCount);
     
     angle += 0.1;
