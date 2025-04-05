@@ -177,6 +177,49 @@ const sketch = (p) => {
 new p5(sketch).start();
 ```
 
+Creating an animated sequence saved as video:
+
+```javascript
+const p5 = require('./p5');
+const fs = require('fs');
+const path = require('path');
+
+const sketch = (p) => {
+  let angle = 0;
+  let frames = [];
+  
+  p.setup = () => {
+    p.createCanvas(400, 400);
+    p.frameRate(30);
+  };
+
+  p.draw = () => {
+    p.background(240);
+    p.translate(p.width/2, p.height/2);
+    p.rotate(angle);
+    p.rectMode(p.CENTER);
+    p.fill(0, 150, 255 * p.frameCount / 60);
+    p.rect(0, 0, 100, 50);
+    
+    // Save every frame
+    const imageBuffer = p.getFrame('image/jpeg');
+    frames.push(imageBuffer);
+    console.log('Saved frame:', p.frameCount);
+    
+    angle += 0.1;
+    
+    if (p.frameCount === 60) { // Stop after 60 frames (~2 seconds)
+      p.noLoop();
+      p.saveVideo('output_vid.mp4', frames, 'jpeg');
+      console.log('Animation complete!');
+      process.exit();
+    }
+  };
+};
+
+new p5(sketch).start();
+```
+
 ### Multiple Sketches
 
 Running multiple sketches simultaneously:
