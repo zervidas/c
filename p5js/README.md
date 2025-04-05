@@ -15,13 +15,13 @@ A guide for using p5.js in Node.js environment to generate images or process gra
 
 ## Installation
 
-First, install p5.js for Node.js:
+First, install skia for Node.js:
 
 ```bash
-npm install p5
+npm install @napi-rs/canvas-android-arm64
 ```
 
-Or if you're using a local p5.js file:
+Import a local p5.js file:
 
 ```javascript
 const p5 = require('./p5.js');
@@ -38,10 +38,9 @@ const p5 = require('./p5');
 
 function setup() {
   createCanvas(400, 400);
-  background(220);
   fill(255, 0, 0);
   ellipse(200, 200, 100, 100);
-  saveCanvas('simple_circle', 'png');
+  saveFrame('simple_circle.png', 'image/png');
   process.exit();
 }
 
@@ -70,7 +69,6 @@ function preload() {
 
 function setup() {
   createCanvas(800, 600);
-  noLoop();
 }
 
 function draw() {
@@ -78,7 +76,8 @@ function draw() {
   fill(200, 0, 0);
   rect(20, 200, 200, 100);
   image(elaina, 100, 100, 300, 300);
-  saveCanvas('output.jpeg', 'image/jpeg');
+  saveFrame('output.jpeg', 'image/jpeg');
+  noLoop();
   process.exit(0);
 }
 
@@ -105,7 +104,6 @@ const sketch = (p) => {
 
   p.setup = () => {
     p.createCanvas(800, 600);
-    p.noLoop();
   };
 
   p.draw = () => {
@@ -157,7 +155,7 @@ const sketch = (p) => {
     p.rect(0, 0, 100, 50);
     
     // Save every frame
-    p.save(path.join(outputDir, `frame_${p.nf(frameCount, 4)}.png`));
+    p.saveFrame(path.join(outputDir, `frame_${p.nf(frameCount, 4)}.png`));
     
     angle += 0.1;
     frameCount++;
@@ -185,7 +183,7 @@ const sketch1 = (p) => {
   p.setup = () => {
     p.createCanvas(200, 200);
     p.background(255, 0, 0);
-    p.saveCanvas('red_canvas', 'png');
+    p.saveFrame('red_canvas.png');
     p.noLoop();
   };
 };
@@ -201,7 +199,7 @@ const sketch2 = (p) => {
   p.setup = () => {
     p.createCanvas(400, 400);
     p.image(img, 0, 0, 400, 400);
-    p.saveCanvas('image_output', 'jpeg');
+    p.saveFrame('image_output.jpeg', 'image/jpeg');
     p.noLoop();
   };
 };
@@ -214,7 +212,7 @@ new p5(sketch2);
 ## API Notes
 
 1. **Image Saving**:
-   - `saveCanvas()` and `save()` work differently in Node.js than browser
+   - `saveCanvas()` and `saveFrame()` work differently in Node.js than browser
    - Files are saved to your project directory
 
 2. **Exit Handling**:
