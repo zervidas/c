@@ -22,6 +22,7 @@ npm install @napi-rs/canvas-android-arm64
 ```
 ```bash
 wget https://raw.githubusercontent.com/zervidas/c/refs/heads/main/p5js/p5.js
+wget https://github.com/zervidas/c/raw/refs/heads/main/p5js/Microsoft%20Sans%20Serif.ttf
 ```
 
 Import a local p5.js file:
