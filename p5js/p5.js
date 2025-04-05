@@ -3,7 +3,8 @@ const skia = require('@napi-rs/canvas-android-arm64');///GoogleSkia.android-arm6
 const fs = require('fs');
 const { Image } = skia;
 
-if (fs.existsSync('./AppleColorEmoji.ttf')) skia.GlobalFonts.registerFromPath('./AppleColorEmoji.ttf', 'Apple')
+if (fs.existsSync('./Microsoft Sans Serif.ttf')) skia.GlobalFonts.registerFromPath('./Microsoft Sans Serif.ttf', 'sans-serif');
+else if (fs.existsSync('$HOME/.termux/font.ttf')) skia.GlobalFonts.registerFromPath('$HOME/termux/font.ttf', 'sans-serif');
 
 let gCanvas = new skia.CanvasElement(800, 600);
 let window = global;
@@ -3197,7 +3198,7 @@ var typographyattributes = (function (require, core, constants) {
     var p5 = core;
     var constants = constants;
     p5.prototype._textLeading = 15;
-    p5.prototype._textFont = "Apple";
+    p5.prototype._textFont = "sans-serif";
     p5.prototype._textSize = 12;
     p5.prototype._textStyle = constants.NORMAL;
     p5.prototype.textAlign = function (a) {
