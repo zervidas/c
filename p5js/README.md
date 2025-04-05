@@ -80,6 +80,9 @@ function draw() {
   fill(200, 0, 0);
   rect(20, 200, 200, 100);
   image(elaina, 100, 100, 300, 300);
+  fill('#00ffff');
+  textSize(30);
+  text('Hai', 100, 100);
   saveFrame('output.jpeg', 'image/jpeg');
   noLoop();
   process.exit(0);
