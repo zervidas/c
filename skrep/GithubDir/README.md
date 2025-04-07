@@ -4,6 +4,7 @@ const zergitfol = require('./zergitfol.node');
 
 const githubUrl = 'https://github.com/zervidas/c/tree/main/fitur';
 const outputZip = './fitur-folder.zip';
+const token = ''; // kalau ga perku kosongin
 
 zergitfol.ZErvidaGitHubFolder(githubUrl, outputZip, (error, success) => {
   if (error) {
@@ -16,7 +17,7 @@ zergitfol.ZErvidaGitHubFolder(githubUrl, outputZip, (error, success) => {
   } else {
     console.log('Download gagal');
   }
-});
+}, token);
 ```
 
 ## Catatan
