@@ -20,6 +20,8 @@ zergitfol.ZErvidaGitHubFolder(githubUrl, outputZip, (error, success) => {
 }, token);
 ```
 
+*) code aslinya di tulis dalam c++, semoga work :)
+
 ## Catatan
 Api dari github melimit hanya dapat melakukan request 60 kali per jam.
 artinya hanya dapat mendownload 60 kali per jam.
