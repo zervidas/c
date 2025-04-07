@@ -20,7 +20,7 @@ zergitfol.ZErvidaGitHubFolder(githubUrl, outputZip, (error, success) => {
 }, token);
 ```
 
-*) ini adalah node.js native addon yang ditulis dalam c++, semoga work :)
+*) kode aslinya ditulis dalam c++, semoga work :)
 
 ## Catatan
 Api dari github melimit hanya dapat melakukan request 60 kali per jam.
